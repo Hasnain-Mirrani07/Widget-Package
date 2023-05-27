@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:widgets_package/timer_countDown/time_countDown.dart';
+
+import 'cliprect_clipoval_clippath_clipRRecr/clipimages_examples.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,14 +15,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-     
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
-      home: const TimerCountDown(),
+      home: const ClipImagesExamples(),
     );
   }
 }
