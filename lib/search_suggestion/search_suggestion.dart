@@ -1,63 +1,53 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter_typeahead/flutter_typeahead.dart';
-// class SearchSuggestions extends StatefulWidget {
-//   const SearchSuggestions({super.key});
+import 'package:flutter/material.dart';
 
-//   @override
-//   State<SearchSuggestions> createState() => _SearchSuggestionsState();
-// }
+class Home extends StatefulWidget {
+  const Home({super.key});
 
-// class _SearchSuggestionsState extends State<SearchSuggestions> {
-//  List<String> suggestons = ["USA", "UK", "Uganda", "Uruguay", "United Arab Emirates"];
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//          appBar: AppBar(
-//             title: Text("Autocomplete on TextField"),
-//             backgroundColor: Colors.redAccent
-//          ),
-//           body: Container(
-//              margin: EdgeInsets.all(30),
-//              alignment: Alignment.topCenter,
-//              child: Column(
-//                  children: [
-//                       TypeAheadField(
-//                           animationStart: 0,
-//                           animationDuration: Duration.zero,
-//                           textFieldConfiguration: TextFieldConfiguration(
-//                             autofocus: true,
-//                             style: TextStyle(fontSize: 15),
-//                             decoration: InputDecoration(
-//                               border: OutlineInputBorder()
-//                             )
-//                           ),
-//                           suggestionsBoxDecoration: SuggestionsBoxDecoration(
-//                               color: Colors.lightBlue[50]
-//                           ),
-//                           suggestionsCallback: (pattern){
-//                               List<String> matches = <String>[];
-//                               matches.addAll(suggestons);
+  @override
+  State<Home> createState() => _HomeState();
+}
 
-//                               matches.retainWhere((s){
-//                                 return s.toLowerCase().contains(pattern.toLowerCase());
-//                               });
-//                               return matches;
-//                           },
-//                           itemBuilder: (context, sone) {
-//                             return Card(
-//                                child: Container( 
-//                                   padding: EdgeInsets.all(10),
-//                                   child:Text(sone.toString()),
-//                                )
-//                             );
-//                           },
-//                           onSuggestionSelected: (suggestion) {
-//                              print(suggestion);
-//                           },
-//                         )
-//                  ],
-//              ),
-//           )
-//       );
-//   }
-// }
+class _HomeState extends State<Home> {
+  List<String> suggestons = [
+    "USA",
+    "UK",
+    "Uganda",
+    "Uruguay",
+    "United Arab Emirates"
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+            title: const Text("Autocomplete on TextField"),
+            backgroundColor: Colors.redAccent),
+        body: Container(
+          margin: const EdgeInsets.all(30),
+          alignment: Alignment.topCenter,
+          child: Column(
+            children: [
+              Autocomplete(
+                optionsBuilder: (TextEditingValue textEditingValue) {
+                  if (textEditingValue.text == '') {
+                    return const Iterable<String>.empty();
+                  } else {
+                    List<String> matches = <String>[];
+                    matches.addAll(suggestons);
+
+                    matches.retainWhere((s) {
+                      return s
+                          .toLowerCase()
+                          .contains(textEditingValue.text.toLowerCase());
+                    });
+                    return matches;
+                  }
+                },
+                onSelected: (String selection) {
+                  print('You just selected $selection');
+                },
+              )
+            ],
+          ),
+        ));
+  }
+}
