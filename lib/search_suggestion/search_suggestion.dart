@@ -26,6 +26,7 @@ class _HomeState extends State<Home> {
           alignment: Alignment.topCenter,
           child: Column(
             children: [
+              // this is auto completer
               Autocomplete(
                 optionsBuilder: (TextEditingValue textEditingValue) {
                   if (textEditingValue.text == '') {
