@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_widgets/timer_countDown/time_countDown.dart';
 
-import 'search_suggestion/search_suggestion.dart';
-
+import 'dialogbox/popup_dialogbox.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +24,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
-      home: const Home(),
+      home: const DialogBox(),
     );
   }
 }
